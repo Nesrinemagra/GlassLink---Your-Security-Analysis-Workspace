@@ -1,6 +1,6 @@
-/* ThreatGuard - Batch Scan screen.
-   Same visual language as singlescan.css: Segoe UI 13px, default JavaFX buttons,
-   #ABADB3 borders, #EEF3F9 details box, bold coloured risk text. */
+                                   
+                                                                                 
+                                                                    
 
 .tab-page {
     -fx-background-color: transparent;
@@ -9,7 +9,7 @@
     -fx-padding: 22 28 20 28;
 }
 
-/* ================= TITLES / TEXT ================= */
+                                                       
 .card-title {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
@@ -24,13 +24,13 @@
     -fx-text-fill: #111111;
 }
 
-/* ================= BUTTONS (default JavaFX look, like Single Scan) ================= */
+                                                                                         
 .button-secondary,
 .button-ghost {
     -fx-cursor: hand;
 }
 
-/* ================= TABLE ================= */
+                                               
 .tab-page .table-view {
     -fx-background-color: #ABADB3, #FCFDFE;
     -fx-background-insets: 0, 1;
@@ -64,7 +64,7 @@
     -fx-text-fill: #5F6B7A;
 }
 
-/* ================= DETAILS ================= */
+                                                 
 .card {
     -fx-background-color: transparent;
     -fx-padding: 4 0 0 0;
@@ -88,7 +88,7 @@
     -fx-text-overrun: ellipsis;
 }
 
-/* ================= PROGRESS ================= */
+                                                  
 .batch-progress {
     -fx-padding: 4 0 0 0;
 }
@@ -104,9 +104,9 @@
     -fx-padding: 4;
 }
 
-/* ================= RISK (same colours as Single Scan) =================
-   Placed last and made more specific than .table-cell / .detail-value,
-   otherwise those rules override the colour. */
+                                                                         
+                                                                       
+                                                
 .tab-page .risk-low,
 .tab-page .table-view .table-cell.risk-low     { -fx-text-fill: #2E9E5B; -fx-font-weight: bold; }
 .tab-page .risk-medium,

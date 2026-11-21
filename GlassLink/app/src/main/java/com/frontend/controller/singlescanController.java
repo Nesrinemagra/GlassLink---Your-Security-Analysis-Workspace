@@ -24,10 +24,10 @@ import javafx.scene.layout.VBox;
 
 public class singlescanController {
 
-    // ==================================================
-    // 1. FXML ELEMENTS
-    // These fields connect Java to your FXML using fx:id.
-    // ==================================================
+    
+    
+    
+    
 
     @FXML
     private TextArea inputArea;
@@ -65,10 +65,10 @@ public class singlescanController {
     @FXML
     private Label durationLabel;
 
-    // ==================================================
-    // 2. RESULT MODEL
-    // This is the information the backend must return.
-    // ==================================================
+    
+    
+    
+    
 
     private record ScanResult(
             String inputType,
@@ -79,41 +79,41 @@ public class singlescanController {
             String duration) {
     }
 
-    // ==================================================
-    // 3. CONTROLLER STATE
-    // ==================================================
+    
+    
+    
 
-    // The task currently running.
+    
     private Task<ScanResult> currentTask;
 
-    // Warning displayed when the input is empty.
+    
     private Label emptyMessage;
 
-    // ==================================================
-    // 4. INITIALIZE
-    // Runs automatically when the FXML screen loads.
-    // ==================================================
+    
+    
+    
+    
 
     @FXML
     public void initialize() {
 
-        // Fill the ComboBox.
+        
         typeCombo.getItems().addAll(
                 "Auto Detect",
                 "URL",
                 "Message");
 
-        // Select Auto Detect by default.
+        
         typeCombo.getSelectionModel().selectFirst();
 
-        // Create the empty-input warning.
+        
         emptyMessage = new Label(
                 "Please enter a URL or a message.");
 
         emptyMessage.setStyle(
                 "-fx-text-fill: #D13438;");
 
-        // Insert the warning immediately after the TextArea.
+        
         VBox parent = (VBox) inputArea.getParent();
 
         int inputIndex = parent.getChildren().indexOf(inputArea);
@@ -124,7 +124,7 @@ public class singlescanController {
 
         hideEmptyMessage();
 
-        // Hide the warning when the user starts typing.
+        
         inputArea.textProperty().addListener(
                 (observable, oldValue, newValue) -> {
 
@@ -133,30 +133,30 @@ public class singlescanController {
                     }
                 });
 
-        // Display the initial empty result state.
+        
         showResult(false);
 
-        // Set the initial result labels.
+        
         inputTypeLabel.setText("Not scanned");
         applyStatus("Not Verified");
         riskBadge.setText("UNKNOWN");
         durationLabel.setText("Not scanned");
     }
 
-    // ==================================================
-    // 5. CHECK BUTTON
-    // Reads the input and starts a background scan.
-    // ==================================================
+    
+    
+    
+    
 
     @FXML
     private void onCheck() {
 
-        // Prevent starting another scan while one is running.
+        
         if (currentTask != null && currentTask.isRunning()) {
             return;
         }
 
-        // Read and clean the input.
+        
         String text = inputArea.getText();
 
         if (text == null) {
@@ -165,7 +165,7 @@ public class singlescanController {
 
         text = text.trim();
 
-        // Validate that the input is not empty.
+        
         if (text.isEmpty()) {
 
             emptyMessage.setVisible(true);
@@ -176,43 +176,43 @@ public class singlescanController {
             return;
         }
 
-        // Read the selected input type.
+        
         String selectedType = typeCombo.getValue();
 
         if (selectedType == null) {
             selectedType = "Auto Detect";
         }
 
-        // Store the values for the background task.
+        
         final String scanText = text;
         final String scanType = selectedType;
 
-        // Create a JavaFX background task.
+        
         Task<ScanResult> task = new Task<>() {
 
             @Override
             protected ScanResult call() throws Exception {
 
-                // The backend performs the actual detection.
+                
                 return runScan(scanText, scanType);
             }
         };
 
         currentTask = task;
 
-        // Update the interface while scanning.
+        
         checkButton.setDisable(true);
         checkButton.setText("Checking…");
 
         hideEmptyMessage();
 
-        // ----------------------------------------------
-        // SCAN SUCCESS
-        // ----------------------------------------------
+        
+        
+        
 
         task.setOnSucceeded(event -> {
 
-            // Ignore an old task if Clear was clicked.
+            
             if (currentTask != task) {
                 return;
             }
@@ -235,9 +235,9 @@ public class singlescanController {
             showResultData(result);
         });
 
-        // ----------------------------------------------
-        // SCAN FAILURE
-        // ----------------------------------------------
+        
+        
+        
 
         task.setOnFailed(event -> {
 
@@ -258,9 +258,9 @@ public class singlescanController {
             showError(scanType, message);
         });
 
-        // ----------------------------------------------
-        // SCAN CANCELLED
-        // ----------------------------------------------
+        
+        
+        
 
         task.setOnCancelled(event -> {
 
@@ -272,7 +272,7 @@ public class singlescanController {
             }
         });
 
-        // Start the task in a separate thread.
+        
         Thread scanThread = new Thread(task);
 
         scanThread.setName("ThreatGuard-SingleScan");
@@ -282,15 +282,15 @@ public class singlescanController {
         scanThread.start();
     }
 
-    // ==================================================
-    // 6. CLEAR BUTTON
-    // Resets the screen and cancels an active scan.
-    // ==================================================
+    
+    
+    
+    
 
     @FXML
     private void onClear() {
 
-        // Cancel the current scan if one exists.
+        
         if (currentTask != null) {
 
             Task<ScanResult> taskToCancel = currentTask;
@@ -300,22 +300,22 @@ public class singlescanController {
             taskToCancel.cancel();
         }
 
-        // Restore the Check button.
+        
         restoreCheckButton();
 
-        // Clear the input.
+        
         inputArea.clear();
 
-        // Select Auto Detect again.
+        
         typeCombo.getSelectionModel().selectFirst();
 
-        // Hide the empty-input warning.
+        
         hideEmptyMessage();
 
-        // Remove previous detection reasons.
+        
         reasonsBox.getChildren().clear();
 
-        // Reset result labels.
+        
         inputTypeLabel.setText("Not scanned");
 
         applyStatus("Not Verified");
@@ -325,13 +325,13 @@ public class singlescanController {
 
 
 
-        // Display the initial empty state.
+        
         showResult(false);
     }
 
-    // ==================================================
-    // 7. RESTORE CHECK BUTTON
-    // ==================================================
+    
+    
+    
 
     private void restoreCheckButton() {
 
@@ -340,9 +340,9 @@ public class singlescanController {
         checkButton.setText("Check");
     }
 
-    // ==================================================
-    // 8. EMPTY INPUT WARNING
-    // ==================================================
+    
+    
+    
 
     private void hideEmptyMessage() {
 
@@ -351,13 +351,13 @@ public class singlescanController {
         emptyMessage.setManaged(false);
     }
 
-    // ==================================================
-    // 9. BACKEND CONNECTION
-    //
-    // IMPORTANT:
-    // Your teammates are responsible for detection.
-    // They should connect their service in this method.
-    // ==================================================
+    
+    
+    
+    
+    
+    
+    
 
     private ScanResult runScan(
             String text,
@@ -394,35 +394,35 @@ public class singlescanController {
             return ItemType.MESSAGE;
         }
 
-        // Auto Detect: a URI with an http(s) scheme is treated as a URL.
+        
         String candidate = text.trim();
         return candidate.matches("(?i)^https?://\\S+$")
                 ? ItemType.URL
                 : ItemType.MESSAGE;
     }
 
-    // ==================================================
-    // 10. DISPLAY A SUCCESSFUL RESULT
-    // ==================================================
+    
+    
+    
 
     private void showResultData(ScanResult result) {
 
-        // Display the input type.
+        
         inputTypeLabel.setText(
                 result.inputType() == null
                         ? "Unknown"
                         : result.inputType());
 
-        // Update the risk and verification labels.
+        
         setRiskAndStatus(
                 result.risk(),
                 result.status(),
                 result.verified());
 
-        // Remove old reasons.
+        
         reasonsBox.getChildren().clear();
 
-        // Display detection reasons.
+        
         if (result.reasons() == null || result.reasons().isEmpty()) {
 
             addReason("No detection reasons provided.");
@@ -437,19 +437,19 @@ public class singlescanController {
             }
         }
 
-        // Display the scan duration.
+        
         durationLabel.setText(
                 result.duration() == null || result.duration().isBlank()
                         ? "—"
                         : result.duration());
 
-        // Display the result.
+        
         showResult(true);
     }
 
-    // ==================================================
-    // 11. DISPLAY A SCANNING ERROR
-    // ==================================================
+    
+    
+    
 
     private void showError(
             String selectedType,
@@ -457,7 +457,7 @@ public class singlescanController {
 
         inputTypeLabel.setText(selectedType);
 
-        // An error must never be presented as a safe result.
+        
         setRiskAndStatus("UNKNOWN", "Error", false);
 
         reasonsBox.getChildren().clear();
@@ -469,9 +469,9 @@ public class singlescanController {
         showResult(true);
     }
 
-    // ==================================================
-    // 12. UPDATE RISK AND VERIFICATION
-    // ==================================================
+    
+    
+    
 
     private void setRiskAndStatus(
             String risk,
@@ -482,7 +482,7 @@ public class singlescanController {
                 ? "UNKNOWN"
                 : risk.trim().toUpperCase();
 
-        // Accept only the four supported risk levels.
+        
         if (!List.of(
                 "HIGH",
                 "MEDIUM",
@@ -494,29 +494,29 @@ public class singlescanController {
             verified = false;
         }
 
-        // LOW_RISK is a rule-based message result, not an externally verified SAFE result.
-        // Keep the backend's LOW level while the separate status label says Not Verified.
+        
+        
 
-        // Update the risk text.
+        
         riskBadge.setText(finalRisk.equals("UNKNOWN") ? "NOT VERIFIED" : finalRisk);
 
-        // Remove the previous risk style.
+        
         riskBadge.getStyleClass().removeAll(
                 "risk-high",
                 "risk-medium",
                 "risk-low",
                 "risk-unknown");
 
-        // Apply the correct risk style.
+        
         riskBadge.getStyleClass().add(
                 "risk-" + finalRisk.toLowerCase());
 
-        // Status: same choices as Batch Scan
-        // (Safe, Danger, Suspect, Low Risk, Not Verified, Error).
+        
+        
         applyStatus(status);
     }
 
-    // Shows the status text and colours it like its meaning.
+    
     private void applyStatus(String status) {
 
         String text = (status == null || status.isBlank())
@@ -539,15 +539,15 @@ public class singlescanController {
             case "Suspect" -> "status-suspect";
             case "Low Risk" -> "status-low-risk";
             case "Error" -> "status-error";
-            default -> "status-unverified"; // Not Verified and anything unexpected
+            default -> "status-unverified"; 
         };
 
         verificationLabel.getStyleClass().add(styleClass);
     }
 
-    // ==================================================
-    // 13. ADD A DETECTION REASON
-    // ==================================================
+    
+    
+    
 
     private void addReason(String reason) {
 
@@ -562,18 +562,18 @@ public class singlescanController {
         reasonsBox.getChildren().add(reasonLabel);
     }
 
-    // ==================================================
-    // 14. SHOW RESULT OR EMPTY STATE
-    // ==================================================
+    
+    
+    
 
     private void showResult(boolean show) {
 
-        // Show the result content.
+        
         resultContent.setVisible(show);
 
         resultContent.setManaged(show);
 
-        // Show the empty state when there is no result.
+        
         emptyState.setVisible(!show);
 
         emptyState.setManaged(!show);

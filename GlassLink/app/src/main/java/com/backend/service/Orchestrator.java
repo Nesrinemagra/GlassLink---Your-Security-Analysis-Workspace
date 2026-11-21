@@ -57,19 +57,19 @@ public final class Orchestrator {
         String url = item.content().trim();
         Optional<String> urlError = validator.isUrlValid(url);
         if (urlError.isPresent()) {
-            // A URL that cannot be parsed cannot be checked: Not Verified, never Safe.
+            
             return result(item, Status.NOT_VERIFIED, RiskLevel.UNKNOWN, Result.NO_RULE_SCORE,
                     List.of(urlError.get()), List.of(), startTime);
         }
 
-        // 1. Local checks on the URL itself (HTTP, raw IP, @, nested subdomains).
+        
         RuleScore ruleResult = rules.analyzeUrl(url);
         List<String> reasons = new ArrayList<>();
         reasons.add("URL rules: score " + ruleResult.score()
                 + " -> " + ruleResult.level().label() + " risk");
         reasons.addAll(ruleResult.reasons());
 
-        // 2. VirusTotal lookup.
+        
         ApiResponse r = safeCheck(url);
         reasons.add(r.reason());
 

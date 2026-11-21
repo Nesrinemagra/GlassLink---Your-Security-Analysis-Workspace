@@ -33,28 +33,28 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
-/**
- * Controller of the Batch Scan tab (BatchScan.fxml).
- * It only reads from the screen, asks the backend for an analysis, and shows the result.
- * It contains NO detection rules.
- */
+   
+                                                     
+                                                                                         
+                                  
+   
 public class BatchScanController {
 
-    /** One row of the table. */
+                                
     public record Row(int num, String type, String content, String status,
                       String level, String duration, String notes) {
     }
 
-    /** What the analysis returns besides the rows. */
+                                                      
     private record Outcome(List<String> warnings, String fileError) {
     }
 
-    /** Called every time one item has been evaluated. */
+                                                         
     private interface RowListener {
         void onRow(int done, int total, Row row);
     }
 
-    // ---- Elements of BatchScan.fxml (names must match the fx:id values) ----
+    
     @FXML private Label resultCountLabel;
     @FXML private Label fileInfoLabel;
     @FXML private Button loadCsvButton;
@@ -80,9 +80,9 @@ public class BatchScanController {
 
     private volatile boolean cancelled;
 
-    // ------------------------------------------------------------------
-    // Setup: runs once, when BatchScan.fxml is loaded
-    // ------------------------------------------------------------------
+    
+    
+    
     @FXML
     public void initialize() {
         numberColumn.setCellValueFactory(c -> new SimpleStringProperty(String.valueOf(c.getValue().num())));
@@ -91,7 +91,7 @@ public class BatchScanController {
         statusColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().status()));
         riskColumn.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().level()));
 
-        // RISK column: bold coloured text, same colours as Single Scan
+        
         riskColumn.setCellFactory(col -> new TableCell<Row, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -106,16 +106,16 @@ public class BatchScanController {
             }
         });
 
-        // Clicking a row shows its details
+        
         resultsTable.getSelectionModel().selectedItemProperty()
                 .addListener((obs, oldRow, row) -> showDetails(row));
 
         resetScreen();
     }
 
-    // ------------------------------------------------------------------
-    // Buttons
-    // ------------------------------------------------------------------
+    
+    
+    
     @FXML
     private void handleLoadCsv() {
         FileChooser chooser = new FileChooser();
@@ -123,7 +123,7 @@ public class BatchScanController {
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV files", "*.csv"));
         File file = chooser.showOpenDialog(loadCsvButton.getScene().getWindow());
         if (file == null) {
-            return; // the user closed the window: nothing changes
+            return; 
         }
         fileInfoLabel.setText(file.getName());
         startAnalysis(file.toPath());
@@ -141,9 +141,9 @@ public class BatchScanController {
         progressLabel.setText("Cancelling...");
     }
 
-    // ------------------------------------------------------------------
-    // The analysis runs in a background thread, so the window never freezes
-    // ------------------------------------------------------------------
+    
+    
+    
     private void startAnalysis(Path path) {
         resultsTable.getItems().clear();
         showDetails(null);
@@ -191,7 +191,7 @@ public class BatchScanController {
         thread.start();
     }
 
-    /** Shows the final result of a run. */
+                                           
     private void finish(Outcome outcome) {
         int count = resultsTable.getItems().size();
         List<String> warnings = outcome.warnings();
@@ -215,11 +215,11 @@ public class BatchScanController {
         setRunning(false);
     }
 
-    // ------------------------------------------------------------------
-    // Small helpers for the screen
-    // ------------------------------------------------------------------
+    
+    
+    
 
-    /** Back to the empty "Ready" state. */
+                                           
     private void resetScreen() {
         resultsTable.getItems().clear();
         fileInfoLabel.setText("No file loaded");
@@ -238,7 +238,7 @@ public class BatchScanController {
         cancelButton.setDisable(!running);
     }
 
-    /** Fills the Details panel; null shows the "select a row" message. */
+                                                                          
     private void showDetails(Row row) {
         boolean hasRow = row != null;
         detailsGrid.setVisible(hasRow);
@@ -268,7 +268,7 @@ public class BatchScanController {
             case "Low" -> "risk-low";
             case "Medium" -> "risk-medium";
             case "High" -> "risk-high";
-            default -> "risk-unknown"; // Not Verified and anything unexpected: never shown as safe
+            default -> "risk-unknown"; 
         };
     }
 
@@ -295,11 +295,11 @@ public class BatchScanController {
         alert.show();
     }
 
-    // ==================================================================
-    // REAL BACKEND INTEGRATION
-    // CSV parsing and detection are delegated to the shared backend.
-    // Each item is evaluated on this Task's background thread.
-    // ==================================================================
+    
+    
+    
+    
+    
     private Outcome analyzeFile(Path path, RowListener listener, BooleanSupplier isCancelled) {
         List<String> warnings = new ArrayList<>();
         final CsvResult parsed;

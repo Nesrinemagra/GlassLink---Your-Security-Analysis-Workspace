@@ -1,4 +1,4 @@
-/* ThreatGuard - JavaFX CSS (header + tabs) */
+                                              
 
 .root-pane {
     -fx-font-family: "Segoe UI", sans-serif;
@@ -10,7 +10,7 @@
     -tg-border: #ABADB3;
 }
 
-/* ---------- Header band ---------- */
+                                       
 .header {
     -fx-background-color: -tg-navy;
     -fx-padding: 10 24 10 24;
@@ -36,7 +36,7 @@
     -fx-text-fill: #DCE6F7;
 }
 
-/* ---------- API status pill ---------- */
+                                           
 .api-status {
     -fx-background-color: rgba(255, 255, 255, 0.14);
     -fx-background-radius: 999;
@@ -51,7 +51,7 @@
     -fx-font-size: 12px;
 }
 
-/* ---------- Tabs ---------- */
+                                
 .main-tabs {
     -fx-tab-min-height: 28;
     -fx-background-color: transparent;

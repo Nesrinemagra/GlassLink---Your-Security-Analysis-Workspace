@@ -13,14 +13,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-/**
- * The only {@link AiTextGenerator} implementation.
- *
- * Talks to the local OpenCode service instead of an inference API. OpenCode
- * owns the inference credentials and the configured provider/model; this client
- * only sends a prompt to its stateless generation endpoint and authenticates
- * with the local service password. No API key is kept in the UI.
- */
+   
+                                                   
+  
+                                                                            
+                                                                                
+                                                                             
+                                                                 
+   
 public final class OpenCodeTextGenerator implements AiTextGenerator {
 
     static final String ENDPOINT = "/api/experimental/generate/text";
@@ -133,7 +133,7 @@ public final class OpenCodeTextGenerator implements AiTextGenerator {
         }
     }
 
-    /** Maps documented OpenCode HTTP errors to messages shown in the result card. */
+                                                                                     
     static String errorMessage(int status, String body) {
         JsonObject error = parseError(body);
         String tag = readString(error, "_tag");

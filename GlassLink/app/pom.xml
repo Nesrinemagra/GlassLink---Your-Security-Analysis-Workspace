@@ -18,28 +18,28 @@
 
     <dependencies>
 
-        <!-- JavaFX Controls: buttons, labels, tables, tabs, etc. -->
+                                                                     
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>${javafx.version}</version>
         </dependency>
 
-        <!-- JavaFX FXML: loads our interface layouts -->
+                                                         
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
         </dependency>
 
-        <!-- JSON parsing for the VirusTotal API response -->
+                                                             
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.10.1</version>
         </dependency>
 
-        <!-- Backend unit tests -->
+                                   
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -52,7 +52,7 @@
     <build>
         <plugins>
 
-            <!-- Compiles Java source code using Java 21 -->
+                                                            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -62,7 +62,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Runs our JavaFX application -->
+                                                
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>

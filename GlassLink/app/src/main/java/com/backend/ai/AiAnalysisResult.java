@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-/**
- * Result produced by the AI analyzer.
- *
- * This is deliberately a separate model from the RuleAnalyzer / VirusTotal
- * {@code Result}: AI output is never merged into the existing detection results.
- */
+   
+                                      
+  
+                                                                           
+                                                                                 
+   
 public record AiAnalysisResult(
         String type,
         String status,

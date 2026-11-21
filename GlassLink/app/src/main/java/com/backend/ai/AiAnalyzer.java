@@ -10,10 +10,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 
-/**
- * Phishing / security analysis of a URL or a message using the configured AI
- * text provider. Detection rules and VirusTotal are intentionally not used here.
- */
+   
+                                                                             
+                                                                                 
+   
 public final class AiAnalyzer {
 
     private static final int MAX_INSIGHTS = 5;
@@ -29,7 +29,7 @@ public final class AiAnalyzer {
         this.generator = generator;
     }
 
-    /** Runs the analysis. The returned object is the AI's view only. */
+                                                                        
     public AiAnalysisResult analyze(String text, String selectedType) throws AiGenerationException {
         String content = text == null ? "" : text.trim();
         if (content.isEmpty()) {
@@ -46,7 +46,7 @@ public final class AiAnalyzer {
         return parseResponse(raw, type, durationMs);
     }
 
-    /** Same auto-detection rule used by Single Scan: http(s) URLs are URLs. */
+                                                                               
     public static String resolveType(String text, String selectedType) {
         if ("URL".equalsIgnoreCase(selectedType)) {
             return "URL";
@@ -115,7 +115,7 @@ public final class AiAnalyzer {
         if (!AiAnalysisResult.ALLOWED_STATUSES.contains(status)) {
             status = "Not Verified";
         }
-        // A message is never externally verified as Safe.
+        
         if ("Message".equals(resolvedType) && "Safe".equals(status)) {
             status = "Low Risk";
         }
@@ -187,7 +187,7 @@ public final class AiAnalyzer {
         return point;
     }
 
-    /** Accepts strict JSON as well as a fenced or decorated JSON block. */
+                                                                           
     static String extractJson(String raw) {
         String text = raw.trim();
         int start = text.indexOf('{');

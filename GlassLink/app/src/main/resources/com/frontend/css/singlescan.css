@@ -1,4 +1,4 @@
-/* ================= ROOT ================= */
+                                              
 .ss-root {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI", sans-serif;
@@ -21,7 +21,7 @@
     -fx-text-fill: #111111;
 }
 
-/* ================= SEPARATOR ================= */
+                                                   
 .ss-root .separator .line {
     -fx-border-color: #D5DAE1;
     -fx-border-width: 1 0 0 0;
@@ -29,7 +29,7 @@
     -fx-padding: 0;
 }
 
-/* ================= TEXT AREA ================= */
+                                                   
 .ss-input {
     -fx-background-color: #3C7FB1, white;
     -fx-background-insets: 0, 1;
@@ -56,12 +56,12 @@
     -fx-padding: 8 10;
 }
 
-/* ================= TYPE DROPDOWN (default JavaFX look) ================= */
+                                                                             
 .ss-combo {
     -fx-cursor: hand;
 }
 
-/* ================= BUTTONS (default JavaFX look) ================= */
+                                                                       
 .btn-primary {
     -fx-base: #1D4380;
     -fx-text-fill: white;
@@ -73,7 +73,7 @@
     -fx-cursor: hand;
 }
 
-/* ================= RESULT CARD ================= */
+                                                     
 .result-card {
     -fx-background-color: #ABADB3, #FCFDFE;
     -fx-background-insets: 0, 1;
@@ -90,7 +90,7 @@
     -fx-text-fill: #5F6B7A;
 }
 
-/* ================= INPUT / STATUS / RISK / DURATION = TABLE HEADER ================= */
+                                                                                         
 #resultInfoRow {
     -fx-background-color: white;
     -fx-border-color: #C5CAD0;
@@ -115,7 +115,7 @@
     -fx-border-width: 0 0 1 0;
 }
 
-/* Status: text only */
+                       
 .status-badge {
     -fx-font-weight: normal;
     -fx-text-fill: #111111;
@@ -127,7 +127,7 @@
 .status-error      { -fx-text-fill: #D13438; -fx-font-weight: bold; }
 .status-unverified { -fx-text-fill: #7A8594; -fx-font-weight: bold; }
 
-/* Risk: text only */
+                     
 .risk-badge {
     -fx-font-weight: bold;
 }
@@ -136,7 +136,7 @@
 .risk-high    { -fx-text-fill: #D13438; }
 .risk-unknown { -fx-text-fill: #7A8594; }
 
-/* ================= SECTION TITLES ================= */
+                                                        
 .result-section-title {
     -fx-font-size: 16px;
     -fx-font-weight:bold;
@@ -148,7 +148,7 @@
     -fx-wrap-text: true;
 }
 
-/* ================= DURATION ================= */
+                                                  
 .duration-label {
     -fx-text-fill: #111111;
 }

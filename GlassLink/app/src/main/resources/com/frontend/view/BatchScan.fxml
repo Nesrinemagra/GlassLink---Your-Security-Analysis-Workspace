@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<!-- Batch Scan tab: load a CSV, results table, details, progress. Controller: BatchScanController -->
+                                                                                                      
 <VBox spacing="10.0" styleClass="tab-page" stylesheets="@../css/batch.css"
       xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.frontend.controller.BatchScanController">
@@ -51,7 +51,7 @@
          </placeholder>
       </TableView>
 
-      <!-- Details of the selected row -->
+                                          
       <VBox minHeight="150.0" prefHeight="150.0" maxHeight="150.0" spacing="8.0" styleClass="card">
          <children>
             <Label styleClass="card-title" text="Details"/>
@@ -98,7 +98,7 @@
          </children>
       </VBox>
 
-      <!-- Progress strip (batch only) -->
+                                          
       <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="batch-progress">
          <children>
             <ProgressBar fx:id="progressBar" prefWidth="260.0" progress="0.0" styleClass="app-progress"/>

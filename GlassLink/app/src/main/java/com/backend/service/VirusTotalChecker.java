@@ -23,15 +23,15 @@ public final class VirusTotalChecker implements ApiChecker {
 
     static final String WAIT_TIME = "https://www.virustotal.com/api/v3/urls/";
 
-    /** How long to wait before retrying after HTTP 429 (free keys: 4 requests/minute). */
+                                                                                          
     private static final long RETRY_WAIT_MS = 15_000;
-    /** A new URL is analysed by VirusTotal: poll the analysis a few times. */
+                                                                              
     private static final int POLL_ATTEMPTS = 5;
     private static final long POLL_WAIT_MS = 3_000;
 
     private final HttpClient http;
-    private final String urlsEndpoint;      // .../urls
-    private final String analysesEndpoint;  // .../analyses
+    private final String urlsEndpoint;      
+    private final String analysesEndpoint;  
     private final String apiKey;
     private final Duration waitTimeMs;
     private final int maxRetries;
@@ -58,14 +58,14 @@ public final class VirusTotalChecker implements ApiChecker {
             return ApiResponse.unavailable("VirusTotal API key not configured");
         }
         try {
-            // 1. Is there already a report for this URL?
+            
             HttpResponse<String> report = send(request(urlsEndpoint + "/" + urlId(url)).GET());
             int code = report.statusCode();
             if (code == 200) {
                 return parseResponse(report.body());
             }
             if (code == 404) {
-                // 2. Never analysed before: ask VirusTotal to analyse it, then read the result.
+                
                 return submitAndWait(url);
             }
             return failure(code);
@@ -114,7 +114,7 @@ public final class VirusTotalChecker implements ApiChecker {
                 .header("Accept", "application/json");
     }
 
-    /** Sends the request; waits and retries when VirusTotal answers 429 (rate limit). */
+                                                                                         
     private HttpResponse<String> send(HttpRequest.Builder builder) throws IOException, InterruptedException {
         HttpResponse<String> response = http.send(builder.build(), HttpResponse.BodyHandlers.ofString());
         for (int attempt = 1; response.statusCode() == 429 && attempt <= maxRetries; attempt++) {
@@ -142,7 +142,7 @@ public final class VirusTotalChecker implements ApiChecker {
 
     private static final String STILL_RUNNING = "VirusTotal analysis not finished";
 
-    /** Reads an existing URL report (GET /urls/{id}). */
+                                                         
     static ApiResponse parseResponse(String body) {
         try {
             JsonObject attributes = attributesOf(body);
@@ -158,7 +158,7 @@ public final class VirusTotalChecker implements ApiChecker {
         }
     }
 
-    /** Reads a finished analysis (GET /analyses/{id}). */
+                                                          
     static ApiResponse parseAnalysis(String body) {
         try {
             JsonObject attributes = attributesOf(body);
@@ -203,7 +203,7 @@ public final class VirusTotalChecker implements ApiChecker {
         return attributesElement.getAsJsonObject();
     }
 
-    /** Turns scanner counts into a verdict. All-zero counts are NOT treated as clean. */
+                                                                                         
     private static ApiResponse verdict(JsonObject stats) {
         long malicious = readCount(stats, "malicious");
         long suspicious = readCount(stats, "suspicious");

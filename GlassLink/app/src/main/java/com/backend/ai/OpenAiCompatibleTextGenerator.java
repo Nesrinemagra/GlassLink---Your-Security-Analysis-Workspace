@@ -13,13 +13,13 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-/**
- * OpenAI-compatible text provider used as the free Groq fallback.
- *
- * The key is supplied only from backend configuration; no UI component ever
- * sees it. Groq exposes the OpenAI chat-completions API at
- * {@code https://api.groq.com/openai/v1/chat/completions}.
- */
+   
+                                                                  
+  
+                                                                            
+                                                           
+                                                           
+   
 public final class OpenAiCompatibleTextGenerator implements AiTextGenerator {
 
     static final String CHAT_COMPLETIONS_PATH = "/chat/completions";
@@ -89,7 +89,7 @@ public final class OpenAiCompatibleTextGenerator implements AiTextGenerator {
         JsonObject body = new JsonObject();
         body.addProperty("model", model);
         body.add("messages", messages);
-        // Groq maps 0 to 1e-8, so use a small positive value for deterministic output.
+        
         body.addProperty("temperature", 0.1);
 
         HttpRequest request = HttpRequest.newBuilder(endpoint)
@@ -133,7 +133,7 @@ public final class OpenAiCompatibleTextGenerator implements AiTextGenerator {
         }
     }
 
-    /** Maps common OpenAI-compatible HTTP errors to messages shown in the result card. */
+                                                                                          
     static String errorMessage(int status, String body) {
         String detail = cleanDetail(readErrorDetail(body));
         String suffix = detail.isEmpty() ? "" : " " + detail;

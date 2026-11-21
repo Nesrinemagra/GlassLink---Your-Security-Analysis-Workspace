@@ -12,14 +12,14 @@ import java.util.Properties;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-/**
- * Backend-only configuration for the AI page.
- *
- * OpenCode remains the primary provider. An OpenAI-compatible fallback (Groq by
- * default) can be selected with {@code ai.provider}. Inference credentials live
- * only in backend config or backend environment variables; they are never put
- * in FXML, controllers, or chat messages.
- */
+   
+                                              
+  
+                                                                                
+                                                                                
+                                                                              
+                                          
+   
 public final class AiConfig {
 
     private static final String DEFAULT_PROVIDER = "auto";
@@ -70,12 +70,12 @@ public final class AiConfig {
         return timeout;
     }
 
-    /** Optional OpenCode model reference, for example {@code opencode/big-pickle}. */
+                                                                                      
     public String model() {
         return opencodeModel;
     }
 
-    /** {@code auto}, {@code opencode}, or {@code openai-compatible}. */
+                                                                        
     public String provider() {
         return provider;
     }
@@ -110,7 +110,7 @@ public final class AiConfig {
             try (Reader reader = Files.newBufferedReader(configFile, StandardCharsets.UTF_8)) {
                 props.load(reader);
             } catch (IOException | IllegalArgumentException e) {
-                // Keep going: OpenCode's own service registration is enough.
+                
                 System.err.println("Could not read " + configFile + " for AI settings: " + e.getMessage());
             }
         }

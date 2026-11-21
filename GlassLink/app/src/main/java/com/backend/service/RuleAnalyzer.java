@@ -15,7 +15,7 @@ public final class RuleAnalyzer {
 
     static final int MEDIUM_SCORE = 3;
     static final int HIGH_SCORE = 6;
-    /** Each URL red flag is worth a Medium on its own; two flags make it High. */
+                                                                                  
     static final int URL_RULE_POINTS = 3;
 
     private record Rule(String name, int points, Pattern pattern) { }
@@ -108,7 +108,7 @@ public final class RuleAnalyzer {
     }
 
 
-    /** Local, offline checks of the URL itself (structure and protocol). */
+                                                                            
     public RuleScore analyzeUrl(String url) {
         int score = 0;
         List<String> reasons = new ArrayList<>();
@@ -147,7 +147,7 @@ public final class RuleAnalyzer {
         return new RuleScore(score, levelFor(score), reasons);
     }
 
-    /** True for hosts like a.b.example.net (4+ labels once "www." is ignored). */
+                                                                                  
     private static boolean nestedSubdomains(String host) {
         if (host.startsWith("www.")) host = host.substring(4);
         return host.split("\\.").length >= 4;

@@ -3,18 +3,18 @@ package com.backend.ai;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Selects the configured AI text provider without changing the analyzer. */
+                                                                             
 public final class AiTextGenerators {
 
     private AiTextGenerators() {
     }
 
-    /**
-     * Creates the generator selected by {@code ai.provider}:
-     * {@code opencode}, {@code openai-compatible}, or {@code auto}.
-     * Auto tries OpenCode first, then the OpenAI-compatible provider (Groq by
-     * default), so a quota/auth failure in OpenCode does not block analysis.
-     */
+       
+                                                             
+                                                                    
+                                                                              
+                                                                             
+       
     public static AiTextGenerator create(AiConfig config) throws AiGenerationException {
         if (config == null) {
             throw new AiGenerationException("AI configuration is missing. Check config.properties.");

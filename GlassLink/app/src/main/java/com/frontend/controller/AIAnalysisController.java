@@ -15,10 +15,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-/**
- * Controller of the AI Analysis tab (AIAnalysis.fxml).
- * It mirrors the Single Scan screen and uses only the AI backend.
- */
+   
+                                                       
+                                                                  
+   
 public class AIAnalysisController {
 
     @FXML
