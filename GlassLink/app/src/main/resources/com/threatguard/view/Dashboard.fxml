@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="root-pane" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.threatguard.controller.DashboardController">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="1200.0" spacing="12.0" styleClass="header" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" smooth="true">
+               <image>
+                  <Image url="@/com/threatguard/images/glasslink_logo_extracted.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label styleClass="app-title" text="Glass Link" />
+                  <Label styleClass="app-subtitle" text="Your Security Analysis Workspace" />
+               </children>
+            </VBox>
+            <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="50.0" prefWidth="190.0" spacing="8.0" styleClass="api-status">
+               <children>
+                  <Circle fx:id="apiStatusDot" fill="DODGERBLUE" radius="4.0" stroke="BLACK" strokeType="INSIDE" styleClass="api-status-dot" />
+                  <Label fx:id="apiStatusLabel" styleClass="api-status-text" text="No API key configured" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" styleClass="main-tabs" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+ <Tab text="Single Scan">
+   <content>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="ss-scroll">
+         <content>
+            <fx:include source="singlescan.fxml" />
+         </content>
+      </ScrollPane>
+   </content>
+</Tab>
+          <Tab text="Batch Scan">
+            <content>
+                            <fx:include source="BatchScan.fxml" />
+            </content>
+          </Tab>
+          <Tab text="AI Analysis">
+            <content>
+              <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="ss-scroll">
+                <content>
+                  <fx:include source="AIAnalysis.fxml" />
+                </content>
+              </ScrollPane>
+            </content>
+          </Tab>
+        </tabs>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="24.0" right="24.0" top="14.0" />
+         </BorderPane.margin>
+      </TabPane>
+   </center>
+</BorderPane>

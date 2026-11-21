@@ -1,0 +1,117 @@
+/* ThreatGuard - Batch Scan screen.
+   Same visual language as singlescan.css: Segoe UI 13px, default JavaFX buttons,
+   #ABADB3 borders, #EEF3F9 details box, bold coloured risk text. */
+
+.tab-page {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+    -fx-padding: 22 28 20 28;
+}
+
+/* ================= TITLES / TEXT ================= */
+.card-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+}
+.count-pill,
+.file-info,
+.progress-muted {
+    -fx-text-fill: #5F6B7A;
+}
+.progress-text {
+    -fx-text-fill: #111111;
+}
+
+/* ================= BUTTONS (default JavaFX look, like Single Scan) ================= */
+.button-secondary,
+.button-ghost {
+    -fx-cursor: hand;
+}
+
+/* ================= TABLE ================= */
+.tab-page .table-view {
+    -fx-background-color: #ABADB3, #FCFDFE;
+    -fx-background-insets: 0, 1;
+    -fx-padding: 0;
+}
+.tab-page .table-view .column-header,
+.tab-page .table-view .filler {
+    -fx-background-color: linear-gradient(to bottom, #F4F4F4, #EDEDED);
+    -fx-border-color: transparent #D5D5D5 #CFCFCF transparent;
+    -fx-border-width: 0 1 1 0;
+}
+.tab-page .table-view .column-header .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+    -fx-alignment: center-left;
+}
+.tab-page .table-view .table-cell {
+    -fx-text-fill: #111111;
+    -fx-alignment: center-left;
+}
+
+.empty-state {
+    -fx-alignment: center;
+}
+.empty-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+}
+.empty-text {
+    -fx-text-fill: #5F6B7A;
+}
+
+/* ================= DETAILS ================= */
+.card {
+    -fx-background-color: transparent;
+    -fx-padding: 4 0 0 0;
+}
+.details-box {
+    -fx-background-color: #C5CAD0, #EEF3F9;
+    -fx-background-insets: 0, 1;
+    -fx-padding: 8 14;
+    -fx-alignment: center;
+}
+.detail-key {
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+}
+.detail-value {
+    -fx-text-fill: #111111;
+    -fx-text-overrun: ellipsis;
+}
+.detail-muted {
+    -fx-text-fill: #5F6B7A;
+    -fx-text-overrun: ellipsis;
+}
+
+/* ================= PROGRESS ================= */
+.batch-progress {
+    -fx-padding: 4 0 0 0;
+}
+.app-progress > .track {
+    -fx-background-color: #DDE3EA;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+}
+.app-progress > .bar {
+    -fx-background-color: #1D4380;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 4;
+}
+
+/* ================= RISK (same colours as Single Scan) =================
+   Placed last and made more specific than .table-cell / .detail-value,
+   otherwise those rules override the colour. */
+.tab-page .risk-low,
+.tab-page .table-view .table-cell.risk-low     { -fx-text-fill: #2E9E5B; -fx-font-weight: bold; }
+.tab-page .risk-medium,
+.tab-page .table-view .table-cell.risk-medium  { -fx-text-fill: #D98E04; -fx-font-weight: bold; }
+.tab-page .risk-high,
+.tab-page .table-view .table-cell.risk-high    { -fx-text-fill: #D13438; -fx-font-weight: bold; }
+.tab-page .risk-unknown,
+.tab-page .table-view .table-cell.risk-unknown { -fx-text-fill: #7A8594; -fx-font-weight: bold; }
